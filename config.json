@@ -56,7 +56,7 @@
     "initialStopAtr": 2.0,
     "minStopPct": 0.05,
     "maxStopPct": 0.15,
-    "trailAtr": 3.0,
+    "trailAtr": 2.0,
     "timeStopCandles": 12,
     "timeStopMinGain": 0.03
   },
