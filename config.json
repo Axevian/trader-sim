@@ -51,7 +51,7 @@
     "rsLookback": 42
   },
   "risk": {
-    "maxPositions": 1,
+    "maxPositions": 3,
     "atrLength": 14,
     "initialStopAtr": 2.0,
     "minStopPct": 0.05,
