@@ -1,0 +1,38 @@
+name: Torneo strategie
+
+on:
+  workflow_dispatch:
+    inputs:
+      years:
+        description: 'Anni di storico (1-8)'
+        default: '3'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trader-sim
+  cancel-in-progress: false
+
+jobs:
+  torneo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Torneo sullo stesso storico
+        env:
+          YEARS: ${{ inputs.years }}
+        run: node engine/torneo.mjs
+      - name: Salvataggio dei risultati
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet || git commit -m "Torneo strategie $(date -u +'%Y-%m-%d %H:%M')"
+          git pull --rebase --autostash || true
+          git push
