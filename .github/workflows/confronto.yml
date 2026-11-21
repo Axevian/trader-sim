@@ -1,0 +1,43 @@
+name: Confronto parametri
+
+on:
+  workflow_dispatch:
+    inputs:
+      param:
+        description: 'Parametro da provare (come in config.json)'
+        default: 'risk.trailAtr'
+        required: true
+      values:
+        description: 'Valori separati da virgola'
+        default: '3,2.5,2,1.5'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trader-sim
+  cancel-in-progress: false
+
+jobs:
+  confronto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Confronto sullo stesso storico
+        env:
+          PARAM: ${{ inputs.param }}
+          VALUES: ${{ inputs.values }}
+        run: node engine/confronto.mjs
+      - name: Salvataggio dei risultati
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git diff --cached --quiet || git commit -m "Confronto parametri $(date -u +'%Y-%m-%d %H:%M')"
+          git pull --rebase --autostash || true
+          git push
