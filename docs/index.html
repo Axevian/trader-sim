@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulatore Trader</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Simulatore Trader</h1>
+    <p class="sub">Solo simulazione · dati reali Kraken · candele da 4 ore · nessun soldo vero</p>
+  </div>
+  <div class="upd" id="updated">Caricamento…</div>
+</header>
+
+<main>
+  <section class="kpis" id="kpis"></section>
+
+  <section class="card">
+    <h2>Progresso verso il traguardo</h2>
+    <div id="progress"></div>
+  </section>
+
+  <section class="card action">
+    <h2>Cosa fare ora</h2>
+    <p class="hint">Istruzioni dell'ultima elaborazione, da replicare sul tuo conto.</p>
+    <div id="actions"></div>
+  </section>
+
+  <section class="grid2">
+    <div class="card">
+      <h2>Posizioni aperte</h2>
+      <div id="positions"></div>
+    </div>
+    <div class="card">
+      <h2>Previsore del traguardo</h2>
+      <div id="forecast"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Andamento del capitale (simulazione dal vivo)</h2>
+    <div class="chartbox"><canvas id="liveChart"></canvas></div>
+    <p class="empty" id="liveEmpty" hidden>Lo storico apparirà dopo le prime elaborazioni.</p>
+  </section>
+
+  <section class="card">
+    <h2>Scanner: i titoli più forti adesso</h2>
+    <p class="hint">Un titolo entra solo se supera tutti i filtri: rottura dei massimi, tendenza, volume, RSI, forza contro Bitcoin, liquidità.</p>
+    <div id="candidates"></div>
+  </section>
+
+  <section class="card">
+    <h2>Storico operazioni</h2>
+    <div id="trades"></div>
+  </section>
+
+  <section class="card">
+    <h2>Traguardi e tentativi</h2>
+    <div id="milestones"></div>
+  </section>
+
+  <section class="card">
+    <h2>Correggere il tiro</h2>
+    <p class="hint">Il simulatore segue anche ciò che <b>non</b> ha comprato (titoli a un solo filtro dal segnale, o scartati per mancanza di posto o mercato in ribasso) e ciò che succede <b>dopo</b> ogni vendita. Così vedi quale regola ti fa perdere occasioni e quale ti protegge. Cambia un parametro alla volta e verifica sempre con il test sul passato.</p>
+    <div class="grid2"><div id="anLive"></div><div id="anBt"></div></div>
+  </section>
+
+  <section class="card">
+    <h2>Diario delle decisioni</h2>
+    <p class="hint">Ogni decisione con il suo perché: valori misurati, soglie, alternative scartate e versione delle regole usata.
+      <select id="logFilter"><option value="">Tutte</option><option value="COMPRA">Acquisti</option><option value="VENDI">Vendite</option><option value="AGGIORNA_STOP">Stop alzati</option><option value="NOOP">Nessuna operazione / attese</option><option value="REGOLE">Cambi di regole</option></select></p>
+    <div id="log"></div>
+  </section>
+
+  <section class="card bt">
+    <h2>Test sul passato (ultimi ~120 giorni)</h2>
+    <div id="btStats"></div>
+    <div class="chartbox"><canvas id="btChart"></canvas></div>
+    <div id="btTrades"></div>
+  </section>
+
+  <footer>
+    Simulazione a scopo didattico. I risultati passati e simulati non garantiscono risultati futuri. Non è una consulenza finanziaria.
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

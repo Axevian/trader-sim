@@ -1,0 +1,13 @@
+{
+  "name": "trader-sim",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simulatore di trading speculativo su dati reali Kraken (solo simulazione)",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "run": "node engine/run.mjs",
+    "backtest": "node engine/backtest.mjs",
+    "demo": "MOCK=1 node engine/backtest.mjs && MOCK=1 node engine/run.mjs"
+  }
+}

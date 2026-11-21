@@ -1,0 +1,72 @@
+{
+  "quote": "EUR",
+  "startCapital": 100,
+  "failThreshold": 20,
+  "targetMultiple": 10,
+  "payoutPct": 0.1,
+  "interval": 240,
+  "universe": {
+    "minVolume24h": 250000,
+    "maxPairs": 60,
+    "exclude": [
+      "USDT",
+      "USDC",
+      "DAI",
+      "EURT",
+      "PYUSD",
+      "TUSD",
+      "USDG",
+      "EURC",
+      "EURQ",
+      "EURR",
+      "RLUSD",
+      "USDS",
+      "USDE",
+      "FDUSD",
+      "USDQ",
+      "USDR",
+      "XAUT",
+      "PAXG",
+      "GBP",
+      "USD",
+      "CHF",
+      "AUD",
+      "CAD",
+      "JPY",
+      "ZUSD",
+      "ZGBP"
+    ]
+  },
+  "regime": {
+    "enabled": true,
+    "pair": "XBTEUR",
+    "emaLength": 120
+  },
+  "entry": {
+    "breakoutLookback": 84,
+    "volumeRatioMin": 2.0,
+    "rsiMax": 85,
+    "emaFast": 20,
+    "emaSlow": 50,
+    "rsLookback": 42
+  },
+  "risk": {
+    "maxPositions": 1,
+    "atrLength": 14,
+    "initialStopAtr": 2.0,
+    "minStopPct": 0.05,
+    "maxStopPct": 0.15,
+    "trailAtr": 3.0,
+    "timeStopCandles": 12,
+    "timeStopMinGain": 0.03
+  },
+  "execution": {
+    "feePct": 0.004,
+    "slippagePct": 0.005,
+    "maxChasePct": 0.02
+  },
+  "review": {
+    "horizonCandles": 12,
+    "minSample": 10
+  }
+}
