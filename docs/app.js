@@ -4,7 +4,7 @@ let Q = 'EUR', IV = 240;
 const dtc = t => t ? dt(t + IV * 60) : '–';
 const money = (x, d = 2) => x == null || !isFinite(x) ? '–' : x.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d }) + ' ' + (Q === 'EUR' ? '€' : Q);
 const price = x => x == null || !isFinite(x) ? '–' : x.toLocaleString('it-IT', { maximumSignificantDigits: 6 });
-const pct = (x, d = 1) => x == null || !isFinite(x) ? '–' : (x >= 0 ? '+' : '') + (x * 100).toLocaleString('it-IT', { maximumFractionDigits: d }) + '%';
+const pct = (x, d = 1) => x == null || !isFinite(x) ? '–' : (Math.abs(x) < 5e-5 ? '' : x > 0 ? '+' : '') + (Math.abs(x) < 5e-5 ? 0 : x * 100).toLocaleString('it-IT', { maximumFractionDigits: d }) + '%';
 const cls = x => x > 0 ? 'pos' : x < 0 ? 'neg' : '';
 const dt = t => t ? new Date(t * 1000).toLocaleString('it-IT', { timeZone: 'Europe/Rome', day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }) : '–';
 const days = d => d == null ? '–' : d < 1 ? Math.round(d * 24) + ' ore' : Math.round(d) + ' giorni';
